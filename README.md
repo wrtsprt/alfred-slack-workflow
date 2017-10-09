@@ -1,4 +1,14 @@
-# Setting up credentials
+# Alfred Slack workflow
+
+Collection of two tools I like to have for using slack. Reimplemented using ruby b/c .. ruby.
+
+## Features:
+
+* `sls away` - setting presence away and turning on DnD in one command
+* `sls active` - setting presence active and turning off DnD in one command
+
+
+# Safely setting up credentials
 
 You can generate a Slack legacy token here: https://api.slack.com/custom-integrations/legacy-tokens
 
