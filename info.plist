@@ -267,6 +267,63 @@ end</string>
 		<dict>
 			<key>config</key>
 			<dict>
+				<key>argumenttrimmode</key>
+				<integer>0</integer>
+				<key>argumenttype</key>
+				<integer>0</integer>
+				<key>fixedorder</key>
+				<false/>
+				<key>items</key>
+				<string>[{"title":"Away","arg":"away","subtitle":"Away + DnD"},{"title":"Active","arg":"active","subtitle":"Active + Turn OFF DnD"}]</string>
+				<key>keyword</key>
+				<string>sls</string>
+				<key>runningsubtext</key>
+				<string></string>
+				<key>subtext</key>
+				<string>Update the slack status</string>
+				<key>title</key>
+				<string>Slack Status</string>
+				<key>withspace</key>
+				<true/>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.input.listfilter</string>
+			<key>uid</key>
+			<string>0A28511A-E5BE-49C9-BCF7-374C9DE3E0A6</string>
+			<key>version</key>
+			<integer>1</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
+				<key>concurrently</key>
+				<false/>
+				<key>escaping</key>
+				<integer>36</integer>
+				<key>script</key>
+				<string>api_token = ENV['api_token']
+
+result1 = `curl "https://slack.com/api/dnd.endDnd?token=#{api_token}"`
+result2 = `curl "https://slack.com/api/users.setPresence?token=#{api_token}&amp;presence=auto"`
+
+puts result1 + " " + result2</string>
+				<key>scriptargtype</key>
+				<integer>0</integer>
+				<key>scriptfile</key>
+				<string></string>
+				<key>type</key>
+				<integer>2</integer>
+			</dict>
+			<key>type</key>
+			<string>alfred.workflow.action.script</string>
+			<key>uid</key>
+			<string>7EB9A98C-FBCE-492B-8F58-E97DC1927D3C</string>
+			<key>version</key>
+			<integer>2</integer>
+		</dict>
+		<dict>
+			<key>config</key>
+			<dict>
 				<key>concurrently</key>
 				<false/>
 				<key>escaping</key>
@@ -299,29 +356,19 @@ end</string>
 		<dict>
 			<key>config</key>
 			<dict>
-				<key>argumenttrimmode</key>
-				<integer>0</integer>
-				<key>argumenttype</key>
-				<integer>0</integer>
-				<key>fixedorder</key>
-				<false/>
-				<key>items</key>
-				<string>[{"title":"Away","arg":"away","subtitle":"Away + DnD"},{"title":"Active","arg":"active","subtitle":"Active + Turn OFF DnD"}]</string>
-				<key>keyword</key>
-				<string>sls</string>
-				<key>runningsubtext</key>
-				<string></string>
-				<key>subtext</key>
-				<string>Update the slack status</string>
-				<key>title</key>
-				<string>Slack Status</string>
-				<key>withspace</key>
+				<key>inputstring</key>
+				<string>{query}</string>
+				<key>matchcasesensitive</key>
 				<true/>
+				<key>matchmode</key>
+				<integer>0</integer>
+				<key>matchstring</key>
+				<string>active</string>
 			</dict>
 			<key>type</key>
-			<string>alfred.workflow.input.listfilter</string>
+			<string>alfred.workflow.utility.filter</string>
 			<key>uid</key>
-			<string>0A28511A-E5BE-49C9-BCF7-374C9DE3E0A6</string>
+			<string>7759E5E7-9A1B-4275-B475-EC1D7C79E12B</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
@@ -343,53 +390,6 @@ end</string>
 			<key>version</key>
 			<integer>1</integer>
 		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>concurrently</key>
-				<false/>
-				<key>escaping</key>
-				<integer>36</integer>
-				<key>script</key>
-				<string>api_token = ENV['api_token']
-
-result1 = `curl "https://slack.com/api/dnd.endDnd?token=#{api_token}"`
-result2 = `curl "https://slack.com/api/dnd.endDnd?token=#{api_token}"`
-
-puts result1 + " " + result2</string>
-				<key>scriptargtype</key>
-				<integer>0</integer>
-				<key>scriptfile</key>
-				<string></string>
-				<key>type</key>
-				<integer>2</integer>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.action.script</string>
-			<key>uid</key>
-			<string>7EB9A98C-FBCE-492B-8F58-E97DC1927D3C</string>
-			<key>version</key>
-			<integer>2</integer>
-		</dict>
-		<dict>
-			<key>config</key>
-			<dict>
-				<key>inputstring</key>
-				<string>{query}</string>
-				<key>matchcasesensitive</key>
-				<true/>
-				<key>matchmode</key>
-				<integer>0</integer>
-				<key>matchstring</key>
-				<string>active</string>
-			</dict>
-			<key>type</key>
-			<string>alfred.workflow.utility.filter</string>
-			<key>uid</key>
-			<string>7759E5E7-9A1B-4275-B475-EC1D7C79E12B</string>
-			<key>version</key>
-			<integer>1</integer>
-		</dict>
 	</array>
 	<key>readme</key>
 	<string></string>
@@ -400,23 +400,23 @@ puts result1 + " " + result2</string>
 			<key>xpos</key>
 			<integer>10</integer>
 			<key>ypos</key>
-			<integer>310</integer>
+			<integer>260</integer>
 		</dict>
 		<key>7759E5E7-9A1B-4275-B475-EC1D7C79E12B</key>
 		<dict>
 			<key>note</key>
 			<string>active</string>
 			<key>xpos</key>
-			<integer>230</integer>
+			<integer>210</integer>
 			<key>ypos</key>
-			<integer>430</integer>
+			<integer>380</integer>
 		</dict>
 		<key>7EB9A98C-FBCE-492B-8F58-E97DC1927D3C</key>
 		<dict>
 			<key>xpos</key>
 			<integer>600</integer>
 			<key>ypos</key>
-			<integer>400</integer>
+			<integer>350</integer>
 		</dict>
 		<key>9D07172A-57A2-4F4B-8426-BF5D566E7DC8</key>
 		<dict>
@@ -437,23 +437,23 @@ puts result1 + " " + result2</string>
 		<key>AAEB6DFB-D249-47A7-AAD0-D9EEC0193565</key>
 		<dict>
 			<key>xpos</key>
-			<integer>850</integer>
+			<integer>840</integer>
 			<key>ypos</key>
-			<integer>200</integer>
+			<integer>240</integer>
 		</dict>
 		<key>D999C93D-8B12-41B2-99D8-43EF35712F16</key>
 		<dict>
 			<key>xpos</key>
-			<integer>490</integer>
+			<integer>530</integer>
 			<key>ypos</key>
-			<integer>320</integer>
+			<integer>380</integer>
 		</dict>
 		<key>DE7829BC-26A4-4EB4-9138-9E29C9EE22CA</key>
 		<dict>
 			<key>xpos</key>
-			<integer>330</integer>
+			<integer>360</integer>
 			<key>ypos</key>
-			<integer>290</integer>
+			<integer>350</integer>
 		</dict>
 		<key>E9F58E83-4E3D-4C67-879D-286BF2714BF5</key>
 		<dict>
